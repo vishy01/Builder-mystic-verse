@@ -57,6 +57,19 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // DocuLens specific colors
+        purple: {
+          50: "#faf7ff",
+          100: "#f4edff",
+          200: "#ebe0ff",
+          300: "#dcc7ff",
+          400: "#c7a0ff",
+          500: "#b175ff",
+          600: "#a855f7",
+          700: "#9333ea",
+          800: "#7c3aed",
+          900: "#6b21a8",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

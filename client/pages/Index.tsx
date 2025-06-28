@@ -1,61 +1,66 @@
-import { DemoResponse } from "@shared/api";
-import { useEffect, useState } from "react";
+import Header from "@/components/Header";
+import ActionButton from "@/components/ActionButton";
+import FeatureCard from "@/components/FeatureCard";
+import {
+  Home,
+  Upload,
+  MessageSquare,
+  FileText,
+  Clock,
+  HelpCircle,
+} from "lucide-react";
 
 export default function Index() {
-  const [messageFromServer, setMessageFromServer] = useState("");
-  // Fetch users on component mount
-  useEffect(() => {
-    fetchHello();
-  }, []);
-
-  const fetchHello = async () => {
-    try {
-      const response = await fetch("/api/demo");
-      const data = (await response.json()) as DemoResponse;
-      setMessageFromServer(data.message);
-    } catch (error) {
-      console.error("Error fetching hello:", error);
-    }
-  };
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
-      <div className="text-center">
-        {/* TODO: replace everything here with the actual app! */}
-        <h1 className="text-2xl font-semibold text-slate-800 flex items-center justify-center gap-3">
-          <svg
-            className="animate-spin h-8 w-8 text-slate-400"
-            viewBox="0 0 50 50"
-          >
-            <circle
-              className="opacity-30"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-            />
-            <circle
-              className="text-slate-600"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-              strokeDasharray="100"
-              strokeDashoffset="75"
-            />
-          </svg>
-          Generating your app...
-        </h1>
-        <p className="mt-4 text-slate-600 max-w-md">
-          Watch the chat on the left for updates that might need your attention
-          to finish generating
-        </p>
-        <p className="mt-4 text-slate-600 max-w-md">{messageFromServer}</p>
-      </div>
+    <div className="min-h-screen bg-gray-50">
+      <Header />
+
+      <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        {/* Hero Section */}
+        <div className="text-center">
+          <h1 className="mb-6 text-5xl font-bold text-gray-900 sm:text-6xl">
+            Welcome to DocuLens
+          </h1>
+          <p className="mb-4 text-xl text-gray-700 font-medium">
+            Your intelligent tax document analysis and chat assistant
+          </p>
+          <p className="mb-12 text-lg text-purple-600 font-medium">
+            Specialized in tax forms, returns, and related inquiries
+          </p>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="mb-16 flex flex-wrap justify-center gap-6">
+          <ActionButton to="/" variant="primary" icon={<Home />}>
+            Welcome
+          </ActionButton>
+          <ActionButton to="/upload" variant="secondary" icon={<Upload />}>
+            Upload Document
+          </ActionButton>
+          <ActionButton to="/chat" variant="tertiary" icon={<MessageSquare />}>
+            Tax Assistant
+          </ActionButton>
+        </div>
+
+        {/* Feature Cards */}
+        <div className="grid gap-8 md:grid-cols-3">
+          <FeatureCard
+            title="Tax Form Analysis"
+            description="Upload W-2s, 1099s, 1040s and other tax forms to get key insights and identify potential issues."
+            icon={<FileText />}
+          />
+          <FeatureCard
+            title="Deadline Tracking"
+            description="Get alerts about important tax deadlines including filing requirements based on your documents."
+            icon={<Clock />}
+          />
+          <FeatureCard
+            title="Tax Expert Chat"
+            description="Ask questions about deductions, credits, filing status and get expert guidance on tax-related concerns."
+            icon={<HelpCircle />}
+          />
+        </div>
+      </main>
     </div>
   );
 }
